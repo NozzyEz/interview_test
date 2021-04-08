@@ -11,6 +11,11 @@ const GlobalStyles = createGlobalStyle`
     font-size: 62.5%
   }
 
+  body {
+    background-color: #2f2f2f;
+    color: #eaeaea;
+  }
+
   h1 {
     font-size: 3rem;
   }
@@ -28,6 +33,14 @@ const GlobalStyles = createGlobalStyle`
   }
   code {
     font-size: 1.5rem;
+  }
+  button {
+    padding: 1.2rem 3rem;
+    font-weight: bolder;
+    border: none;
+    background-color: #e06c2e;
+    /* color: #282727; */
+    color: #fff;
   }
 `;
 

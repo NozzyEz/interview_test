@@ -8,8 +8,8 @@ interface codeElem {
   name: string;
   type: string;
   subtype?: string;
-  key: number;
-  parent?: number | undefined;
+  key: string;
+  props?: codeElem | undefined;
 }
 
 const Display: React.FC<Props> = ({code}) => {
@@ -24,9 +24,13 @@ const Display: React.FC<Props> = ({code}) => {
             <div className="line-container" key={line.key}>
               <code>
                 {console.log(line)}
-                {line.type === 'Array'
-                  ? `${line.name}: ${line.type}<${line.subtype}>`
-                  : `${line.name}: ${line.type}`}
+                {line.type !== 'Array' && line.type !== 'object' && `${line.name}: ${line.type}`}
+                {line.type === 'Array' && `${line.name}: ${line.type}<${line.subtype}>`}
+                {line.type === 'object' &&
+                  `type ${line.name} = {
+                  ${line.type}
+                  ${line.type}
+                }`}
               </code>
             </div>
           ))}
@@ -43,7 +47,7 @@ const CodeBox = styled.div`
   /* width: 90%; */
   min-height: 80rem;
   border-radius: 2rem;
-  border: 1px solid black;
+  border: 1px solid #eaeaea;
   padding: 5rem;
 `;
 

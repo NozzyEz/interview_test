@@ -1,23 +1,25 @@
+import {useState} from 'react';
+import {uuid} from 'uuidv4';
+
 import styled from 'styled-components';
 import GlobalStyles from './components/GlobalStyles';
 
 import Header from './components/Header';
 import InputSampler from './components/InputSampler';
 import Display from './components/Display';
-import {useState} from 'react';
 
 interface codeElem {
   name: string;
   type: string;
   subtype?: string;
-  key: number;
-  parent?: number | undefined;
+  key: string;
+  props?: codeElem | undefined;
 }
 
 let initialCodeElem = {
   name: '',
   type: 'number',
-  key: 0,
+  key: uuid(),
 };
 
 function App() {
@@ -41,7 +43,6 @@ const Container = styled.div`
   width: 90vw;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 `;
 
 export default App;
