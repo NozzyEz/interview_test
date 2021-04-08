@@ -29,7 +29,12 @@ const Display: React.FC<Props> = ({code}) => {
               <code>
                 {line.type === 'object' &&
                   `type ${line.name} = {
-                  ${line.props?.map(prop => `${prop.name}: ${prop.type}`)}
+                  ${line.props?.map(prop => {
+                    if (prop.type === 'Array') {
+                      return `${prop.name}: ${prop.type}<${prop.subtype}>`;
+                    }
+                    return `${prop.name}: ${prop.type}`;
+                  })}
                 }`}
               </code>
             </div>

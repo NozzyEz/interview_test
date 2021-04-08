@@ -82,15 +82,34 @@ const Form: React.FC<Props> = ({code, setCode, line}) => {
   }
 
   //* sets the subtype selected for Array type
-  function subTypeChangeHandler(e: any) {
-    setSubType(e.target.value);
-
-    const i = code.findIndex(el => el.key === line?.key);
-    console.log(i);
-
+  function subTypeChangeHandler(e: any, prop?: codeElem) {
     let newCode = [...code];
+    const i = code.findIndex(el => el.key === line?.key);
     const newCodeElement = newCode[i];
-    newCodeElement.subtype = e.target.value;
+
+    let propIndex: number | undefined = undefined;
+    if (prop) {
+      // console.log(prop.key);
+      // decontruct props
+      let newProps = props ? [...props] : [];
+      // find the prop with matching key
+      propIndex = newProps.findIndex(el => el.key === prop.key);
+      console.log(propIndex);
+
+      // change it's type
+      newProps[propIndex].subtype = e.target.value;
+      // put the clone back in props
+      setProps(newProps);
+      newCodeElement.props = newProps;
+      console.log('prop passed');
+      console.log(newCodeElement);
+      console.log(propIndex);
+      newCodeElement.props[propIndex].subtype = e.target.value;
+    } else {
+      setSubType(e.target.value);
+      console.log(i);
+      newCodeElement.subtype = e.target.value;
+    }
     newCode[i] = newCodeElement;
     setCode(newCode);
   }
@@ -215,10 +234,21 @@ const Form: React.FC<Props> = ({code, setCode, line}) => {
               <option value="Array">Array</option>
               <option value="object">Object</option>
             </ObjSelector>
+            {prop.type === 'Array' && (
+              <>
+                <label htmlFor="">Contains:</label>
+                <Selector defaultValue={subType} onChange={e => subTypeChangeHandler(e, prop)}>
+                  <option value="number">Number</option>
+                  <option value="string">String</option>
+                  <option value="Array">Array</option>
+                  <option value="object">Object</option>
+                </Selector>
+              </>
+            )}
             <button onClick={e => deleteElemHandler(e, prop)}>Delete</button>
           </ObjInputForm>
         ))}
-      {props && <ObjAddBtn onClick={addPropsToObjHandler}>Add new</ObjAddBtn>}
+      {line?.props && <ObjAddBtn onClick={addPropsToObjHandler}>Add new</ObjAddBtn>}
     </InputForm>
   );
 };
