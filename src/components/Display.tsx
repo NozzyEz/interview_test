@@ -9,27 +9,27 @@ interface codeElem {
   type: string;
   subtype?: string;
   key: string;
-  props?: codeElem | undefined;
+  props?: Array<codeElem> | undefined;
 }
 
 const Display: React.FC<Props> = ({code}) => {
   // console.log(code);
   return (
     <StyledDisplay>
+      <h3>Code goes here</h3>
       <CodeBox>
-        <h3>Code goes here</h3>
         {!code && <p>But not before there is code to display</p>}
         {code !== undefined &&
           code.map(line => (
             <div className="line-container" key={line.key}>
               <code>
-                {console.log(line)}
                 {line.type !== 'Array' && line.type !== 'object' && `${line.name}: ${line.type}`}
-                {line.type === 'Array' && `${line.name}: ${line.type}<${line.subtype}>`}
+              </code>
+              <code>{line.type === 'Array' && `${line.name}: ${line.type}<${line.subtype}>`}</code>
+              <code>
                 {line.type === 'object' &&
                   `type ${line.name} = {
-                  ${line.type}
-                  ${line.type}
+                  ${line.props?.map(prop => `${prop.name}: ${prop.type}`)}
                 }`}
               </code>
             </div>
@@ -42,13 +42,20 @@ const Display: React.FC<Props> = ({code}) => {
 const StyledDisplay = styled.div`
   max-width: 70rem;
   flex-grow: 1;
-`;
-const CodeBox = styled.div`
-  /* width: 90%; */
   min-height: 80rem;
   border-radius: 2rem;
   border: 1px solid #eaeaea;
+  h3 {
+    padding: 2rem;
+  }
+`;
+const CodeBox = styled.div`
+  margin: 0rem 3.5rem;
+  min-height: 50rem;
   padding: 5rem;
+  background-color: #7f7f7f;
+  border: 2px solid #e06c2e;
+  border-radius: 1rem;
 `;
 
 export default Display;

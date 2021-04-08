@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {uuid} from 'uuidv4';
+import {v4 as uuid} from 'uuid';
 
 import styled from 'styled-components';
 import GlobalStyles from './components/GlobalStyles';
@@ -13,7 +13,7 @@ interface codeElem {
   type: string;
   subtype?: string;
   key: string;
-  props?: codeElem | undefined;
+  props?: Array<codeElem> | undefined;
 }
 
 let initialCodeElem = {

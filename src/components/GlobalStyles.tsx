@@ -1,6 +1,11 @@
 import {createGlobalStyle} from 'styled-components';
+import FjellaOne from '../fonts/FjallaOne-Regular.ttf';
 
 const GlobalStyles = createGlobalStyle`
+@font-face {
+  font-family: 'FjellaOne';
+  src: url(${FjellaOne});
+}
   * {
     margin: 0;
     padding: 0;
@@ -14,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: #2f2f2f;
     color: #eaeaea;
+    font-family: 'FjellaOne';
   }
 
   h1 {
@@ -33,14 +39,24 @@ const GlobalStyles = createGlobalStyle`
   }
   code {
     font-size: 1.5rem;
+    color: #000;
+    display:block
   }
   button {
     padding: 1.2rem 3rem;
+    margin: 0rem 0.5rem;
     font-weight: bolder;
     border: none;
     background-color: #e06c2e;
-    /* color: #282727; */
+    transition: all 0.3s ease-in-out;
     color: #fff;
+    &:hover {
+    color: #e06c2e;
+    background-color: #fff;
+    }
+    &:focus {
+      outline: #fff 1px solid
+    }
   }
 `;
 

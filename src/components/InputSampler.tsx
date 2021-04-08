@@ -1,4 +1,4 @@
-import {uuid} from 'uuidv4';
+import {v4 as uuid} from 'uuid';
 import styled from 'styled-components';
 import Form from './Form';
 
@@ -14,7 +14,7 @@ interface codeElem {
   type: string | undefined;
   subtype?: string;
   key: string;
-  props?: codeElem | undefined;
+  props?: Array<codeElem> | undefined;
 }
 
 const InputSampler: React.FC<Props> = ({code, setCode}) => {
@@ -26,7 +26,6 @@ const InputSampler: React.FC<Props> = ({code, setCode}) => {
       name: '',
       type: 'number',
       subtype: undefined,
-      //! code.length can make duplicate keys when elements are deleted
       key: uuid(),
     };
 
