@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/subreader_interview_test/static/js/main.ac2e17b4.chunk.js",
+    "main.js.map": "/subreader_interview_test/static/js/main.ac2e17b4.chunk.js.map",
+    "runtime-main.js": "/subreader_interview_test/static/js/runtime-main.d11b6c89.js",
+    "runtime-main.js.map": "/subreader_interview_test/static/js/runtime-main.d11b6c89.js.map",
+    "static/js/2.dd739b37.chunk.js": "/subreader_interview_test/static/js/2.dd739b37.chunk.js",
+    "static/js/2.dd739b37.chunk.js.map": "/subreader_interview_test/static/js/2.dd739b37.chunk.js.map",
+    "index.html": "/subreader_interview_test/index.html",
+    "static/js/2.dd739b37.chunk.js.LICENSE.txt": "/subreader_interview_test/static/js/2.dd739b37.chunk.js.LICENSE.txt",
+    "static/media/FjallaOne-Regular.c674a102.ttf": "/subreader_interview_test/static/media/FjallaOne-Regular.c674a102.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d11b6c89.js",
+    "static/js/2.dd739b37.chunk.js",
+    "static/js/main.ac2e17b4.chunk.js"
+  ]
+}
