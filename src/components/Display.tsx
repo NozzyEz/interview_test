@@ -26,17 +26,22 @@ const Display: React.FC<Props> = ({code}) => {
                 {line.type !== 'Array' && line.type !== 'object' && `${line.name}: ${line.type}`}
               </code>
               <code>{line.type === 'Array' && `${line.name}: ${line.type}<${line.subtype}>`}</code>
-              <code>
-                {line.type === 'object' &&
-                  `type ${line.name} = {
-                  ${line.props?.map(prop => {
-                    if (prop.type === 'Array') {
-                      return `${prop.name}: ${prop.type}<${prop.subtype}>`;
-                    }
-                    return `${prop.name}: ${prop.type}`;
-                  })}
-                }`}
-              </code>
+
+              {line.type === 'object' && (
+                <>
+                  <code>type {line.name} = &#10100;</code>
+                  {line.props?.map(prop => (
+                    <ObjectCode>
+                      {prop.type === 'Array' && `${prop.name}: ${prop.type}<${prop.subtype}>`}
+                      {prop.type === 'object' && `type ${prop.name} = ${prop.type}{}`}
+                      {prop.type !== 'Array' &&
+                        prop.type !== 'object' &&
+                        `${prop.name}: ${prop.type}`}
+                    </ObjectCode>
+                  ))}
+                  <code>&#10101;</code>
+                </>
+              )}
             </div>
           ))}
       </CodeBox>
@@ -57,10 +62,14 @@ const StyledDisplay = styled.div`
 const CodeBox = styled.div`
   margin: 0rem 3.5rem;
   min-height: 50rem;
-  padding: 5rem;
+  padding: 3rem 5rem;
   background-color: #7f7f7f;
   border: 2px solid #e06c2e;
   border-radius: 1rem;
+`;
+
+const ObjectCode = styled.code`
+  margin-left: 2rem;
 `;
 
 export default Display;
