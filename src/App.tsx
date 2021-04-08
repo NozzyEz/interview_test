@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import GlobalStyles from './components/GlobalStyles';
 
 import Header from './components/Header';
-import InputSampler from './components/InputSampler';
+import Form from './components/Form';
 import Display from './components/Display';
 
 interface codeElem {
@@ -30,7 +30,7 @@ function App() {
       <GlobalStyles />
       <Header />
       <Container>
-        <InputSampler code={code} setCode={setCode} />
+        <Form code={code} setCode={setCode} />
         <Display code={code} />
       </Container>
     </div>
