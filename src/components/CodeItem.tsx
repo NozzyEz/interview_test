@@ -26,7 +26,10 @@ const CodeItem: React.FC<Props> = ({line}) => {
       {line.type === 'Array' && (
         <>
           <code>{`${line.name}: Array <*insert type of prop here*>`}</code>
-          <div>{internalProps}</div>
+          <div>
+            <code>Arraytype:</code>
+            {internalProps}
+          </div>
         </>
       )}
       {line.type === 'object' && (
