@@ -44,7 +44,7 @@ const Form: React.FC<Props> = ({code, setCode}) => {
 };
 
 const StyledForm = styled.div`
-  width: 80rem;
+  width: 100rem;
   min-height: 80rem;
   border-radius: 2rem;
   border: 1px solid #eaeaea;

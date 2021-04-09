@@ -40,7 +40,7 @@ function App() {
 const Container = styled.div`
   min-height: 50vh;
   margin: 2rem 5rem;
-  width: 90vw;
+  width: 95vw;
   display: flex;
   justify-content: space-between;
 `;
