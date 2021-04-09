@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
+import CodeItem from './CodeItem';
+
 interface Props {
-  code: Array<codeElem> | undefined;
+  code: Array<codeElem>;
 }
 
 interface codeElem {
   name: string;
   type: string;
-  subtype?: string;
   key: string;
   props?: Array<codeElem> | undefined;
 }
@@ -18,32 +19,9 @@ const Display: React.FC<Props> = ({code}) => {
     <StyledDisplay>
       <h3>Code goes here</h3>
       <CodeBox>
-        {!code && <p>But not before there is code to display</p>}
-        {code !== undefined &&
-          code.map(line => (
-            <div className="line-container" key={line.key}>
-              <code>
-                {line.type !== 'Array' && line.type !== 'object' && `${line.name}: ${line.type}`}
-              </code>
-              <code>{line.type === 'Array' && `${line.name}: ${line.type}<${line.subtype}>`}</code>
-
-              {line.type === 'object' && (
-                <>
-                  <code>type {line.name} = &#10100;</code>
-                  {line.props?.map(prop => (
-                    <ObjectCode>
-                      {prop.type === 'Array' && `${prop.name}: ${prop.type}<${prop.subtype}>`}
-                      {prop.type === 'object' && `type ${prop.name} = ${prop.type}{}`}
-                      {prop.type !== 'Array' &&
-                        prop.type !== 'object' &&
-                        `${prop.name}: ${prop.type}`}
-                    </ObjectCode>
-                  ))}
-                  <code>&#10101;</code>
-                </>
-              )}
-            </div>
-          ))}
+        {code.map(line => (
+          <CodeItem line={line} key={line.key} />
+        ))}
       </CodeBox>
     </StyledDisplay>
   );
@@ -66,10 +44,6 @@ const CodeBox = styled.div`
   background-color: #7f7f7f;
   border: 2px solid #e06c2e;
   border-radius: 1rem;
-`;
-
-const ObjectCode = styled.code`
-  margin-left: 2rem;
 `;
 
 export default Display;

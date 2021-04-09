@@ -5,13 +5,12 @@ import styled from 'styled-components';
 import GlobalStyles from './components/GlobalStyles';
 
 import Header from './components/Header';
-import InputSampler from './components/InputSampler';
+import Form from './components/Form';
 import Display from './components/Display';
 
 interface codeElem {
   name: string;
   type: string;
-  subtype?: string;
   key: string;
   props?: Array<codeElem> | undefined;
 }
@@ -30,7 +29,7 @@ function App() {
       <GlobalStyles />
       <Header />
       <Container>
-        <InputSampler code={code} setCode={setCode} />
+        <Form code={code} setCode={setCode} />
         <Display code={code} />
       </Container>
     </div>
@@ -40,7 +39,7 @@ function App() {
 const Container = styled.div`
   min-height: 50vh;
   margin: 2rem 5rem;
-  width: 90vw;
+  width: 95vw;
   display: flex;
   justify-content: space-between;
 `;
