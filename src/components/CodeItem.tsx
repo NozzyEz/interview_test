@@ -8,7 +8,7 @@ interface codeElem {
   name: string;
   type: string;
   key: string;
-  props?: Array<codeElem>;
+  props?: Array<codeElem> | undefined;
 }
 
 const CodeItem: React.FC<Props> = ({line}) => {
@@ -26,21 +26,21 @@ const CodeItem: React.FC<Props> = ({line}) => {
       {line.type === 'Array' && (
         <>
           <code>{`${line.name}: Array <*insert type of prop here*>`}</code>
-          {internalProps[0] && <div>{internalProps}</div>}
+          <div>{internalProps}</div>
         </>
       )}
       {line.type === 'object' && (
         <>
-          <code>type {line.name} = &#10100;</code>
+          <code>{`type ${line.name} = {`}</code>
           {line.props && internalProps}
-          <code>&#10101;</code>
+          <code>{`}`}</code>
         </>
       )}
     </div>
   );
 };
 
-const ObjectCode = styled.code`
+const ObjectCode = styled.div`
   margin-left: 2rem;
   font-size: 1.1rem;
 `;

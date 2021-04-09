@@ -9,7 +9,6 @@ interface Props {
 interface codeElem {
   name: string;
   type: string;
-  subtype?: string;
   key: string;
   props?: Array<codeElem> | undefined;
 }
