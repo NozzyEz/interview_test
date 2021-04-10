@@ -45,6 +45,10 @@ const ObjectCode = styled.div`
 `;
 
 const ArrayCodeItem: React.FC<Props> = ({line}) => {
+  const internalProps = (line.props || []).map(prop => (
+    <ObjectCode key={prop.key}>{line.props && <CodeItem line={prop} />}</ObjectCode>
+  ));
+
   return (
     <StyledArrayItem>
       {line.props && line.type === 'Array' && (
@@ -52,7 +56,14 @@ const ArrayCodeItem: React.FC<Props> = ({line}) => {
           {`Array <`} <ArrayCodeItem line={line.props[0]} /> {`>`}
         </>
       )}
-      {line.type !== 'Array' && line.type}
+      {line.type !== 'Array' && line.type !== 'object' && line.type}
+      {line.type === 'object' && line.props && (
+        <>
+          {`{`}
+          {line.props && internalProps}
+          {`}`}
+        </>
+      )}
     </StyledArrayItem>
   );
 };
