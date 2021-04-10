@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface Props {
   line: codeElem;
+  props?: Array<codeElem> | undefined;
 }
 
 interface codeElem {
@@ -15,21 +16,16 @@ const CodeItem: React.FC<Props> = ({line}) => {
   const internalProps = (line.props || []).map(prop => (
     <ObjectCode key={prop.key}>{line.props && <CodeItem line={prop} />}</ObjectCode>
   ));
-  // if (internalProps.length > 0) console.log(internalProps[0].props.children.props.line.type);
 
   return (
     <div className="line-container" key={line.key}>
       <code>{line.type !== 'Array' && line.type !== 'object' && `${line.name}: ${line.type}`}</code>
 
-      {/* {line.type === 'Array' && <code>{`${line.name}: Array<${arrProp}>`}</code>} */}
-
-      {line.type === 'Array' && (
+      {line.type === 'Array' && line.props && (
         <>
-          <code>{`${line.name}: Array <*insert type of prop here*>`}</code>
-          <div>
-            <code>Arraytype:</code>
-            {internalProps}
-          </div>
+          <code>
+            {`${line.name}: Array <`} <ArrayCodeItem line={line.props[0]} /> {`>`}
+          </code>
         </>
       )}
       {line.type === 'object' && (
@@ -48,4 +44,21 @@ const ObjectCode = styled.div`
   font-size: 1.1rem;
 `;
 
+const ArrayCodeItem: React.FC<Props> = ({line}) => {
+  return (
+    <StyledArrayItem>
+      {line.props && line.type === 'Array' && (
+        <>
+          {`Array <`} <ArrayCodeItem line={line.props[0]} /> {`>`}
+        </>
+      )}
+      {line.type !== 'Array' && line.type}
+    </StyledArrayItem>
+  );
+};
+
 export default CodeItem;
+
+const StyledArrayItem = styled.div`
+  display: inline;
+`;
