@@ -29,7 +29,7 @@ const FormItem: React.FC<Props> = ({code, setCode, line, parent}) => {
   function typeChangeHandler(e: any) {
     setType(e.target.value);
     line.type = e.target.value;
-    // console.log(newCodeElement);
+
     if (e.target.value === 'Array' || e.target.value === 'object') {
       line.props = [];
       addPropsHandler();
@@ -48,8 +48,8 @@ const FormItem: React.FC<Props> = ({code, setCode, line, parent}) => {
 
   //* When object is selected as type, create a prop
   function addPropsHandler() {
-    console.log('addPropsToObjHandler() initiated');
-    console.log(line.props);
+    // console.log('addPropsToObjHandler() initiated');
+    // console.log(line.props);
 
     const newProp: codeElem = {
       name: '',
@@ -62,12 +62,12 @@ const FormItem: React.FC<Props> = ({code, setCode, line, parent}) => {
     } else {
       line.props = [newProp];
     }
-    console.log(line.props);
+    // console.log(line.props);
     setCode([...code]);
   }
 
   //* delete code element or prop
-  function deleteElemHandler(e: any) {
+  function deleteElemHandler() {
     console.log(line);
     if (parent?.props) {
       // Delete item with splice on parent
