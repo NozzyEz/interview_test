@@ -68,18 +68,18 @@ const FormItem: React.FC<Props> = ({code, setCode, line, parent}) => {
 
   //* delete code element or prop
   function deleteElemHandler() {
-    console.log(line);
+    // console.log(line);
     if (parent?.props) {
       // Delete item with splice on parent
       const i = parent.props.findIndex(el => el.key === line.key);
-      console.log(i);
-      console.log('Does have parent, deleting from it');
+      // console.log(i);
+      // console.log('Does have parent, deleting from it');
       parent.props.splice(i, 1);
     } else {
       // delete item with splice on code
       const i = code.findIndex(el => el.key === line.key);
-      console.log(i);
-      console.log("Doesn't have parent, deleting from code");
+      // console.log(i);
+      // console.log("Doesn't have parent, deleting from code");
       code.splice(i, 1);
     }
 
